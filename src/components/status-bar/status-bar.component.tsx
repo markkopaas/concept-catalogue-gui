@@ -7,8 +7,9 @@ import { DateTime } from 'luxon';
 
 import { localization } from '../../lib/localization';
 import { useDispatch, useGlobalState } from '../../app/context/stateContext';
-import { patchConceptFromForm } from '../../lib/patchConceptForm';
 import { deleteConcept } from '../../api/concept-catalogue-api';
+import { ButtonStrip } from '../button-strip/button-strip.component';
+
 import './status-bar.scss';
 
 const CONCEPT_STATUS_PUBLISHED = 'publisert';
@@ -60,11 +61,9 @@ interface Props {
 type EnhancedProps = Props & RouteComponentProps;
 
 const lastSavedTime = (endringstidspunkt): string => {
-  if (!endringstidspunkt) {
-    return '';
-  }
-  return DateTime.fromISO(endringstidspunkt, { locale: localization.getLanguage() }).toFormat(
-    localization.timeStampPattern
+  return (
+    endringstidspunkt &&
+    DateTime.fromISO(endringstidspunkt, { locale: localization.getLanguage() }).toFormat(localization.timeStampPattern)
   );
 };
 
@@ -131,29 +130,17 @@ export const StatusBarPure = ({ concept, isInitialInValidForm, history, match: {
         )}
       >
         <div>{message}</div>
-
-        {!published && (!status || status === CONCEPT_STATUS_DRAFT) && (
-          <div className="d-flex">
-            <Button
-              id="dataset-setPublish-button"
-              className="fdk-button mr-3"
-              color="primary"
-              disabled={validationError}
-              onClick={() => patchConceptFromForm({ status: CONCEPT_STATUS_PUBLISHED }, { concept, dispatch })}
-            >
-              {localization.publish}
-            </Button>
-
-            <button
-              type="button"
-              className="btn bg-transparent fdk-color-link-dark"
-              disabled={isSaving}
-              onClick={toggleShowConfirmDelete}
-            >
-              {localization.delete}
-            </button>
-          </div>
-        )}
+        <div className="d-flex">
+          <ButtonStrip concept={{}} />
+          <button
+            type="button"
+            className="btn bg-transparent fdk-color-link-dark"
+            disabled={false}
+            onClick={toggleShowConfirmDelete}
+          >
+            Slett
+          </button>
+        </div>
       </div>
     </>
   );

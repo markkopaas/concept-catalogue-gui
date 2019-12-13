@@ -1,0 +1,25 @@
+@import '../../../node_modules/designsystemet/fdk-designsystem-bootstrap4/scss/colors.scss';
+
+button.fdk-strip-button.mr-3 {
+  margin: 0 !important;
+}
+
+.fdk-strip-button {
+  border-radius: 0 !important;
+
+  svg {
+    width: 1em;
+    height: 1em;
+    margin-right: 5px;
+  }
+
+  &:first-of-type {
+    border-top-left-radius: 3px !important;
+    border-bottom-left-radius: 3px !important;
+  }
+
+  &:last-of-type {
+    border-top-right-radius: 3px !important;
+    border-bottom-right-radius: 3px !important;
+  }
+}
