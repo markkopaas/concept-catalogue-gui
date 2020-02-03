@@ -58,9 +58,16 @@ const renderListItems = (items, catalogId, sortField, sortDirection): JSX.Elemen
   if (!items) {
     return null;
   }
+
   return _.orderBy(
     items,
-    [i => (getTranslateText(_.get(i, sortField)) && getTranslateText(_.get(i, sortField)).toLowerCase()) || ''],
+    [
+      i => {
+        const value =
+          sortField === 'valid' ? determineValidity(i.gyldigFom, i.gyldigTom) : getTranslateText(_.get(i, sortField));
+        return (value && value.toLowerCase()) || '';
+      }
+    ],
     [sortDirection]
   ).map(
     ({ id, fagområde, status, anbefaltTerm, gyldigFom, gyldigTom }, index): JSX.Element => (
