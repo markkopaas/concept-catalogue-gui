@@ -11,6 +11,7 @@ const env = (window as any).env || {
 // env.CONCEPT_REGISTRATION_API = 'https://registrering-begrep-api.ut1.fellesdatakatalog.brreg.no';
 // env.SSO_HOST = 'https://sso.ut1.fellesdatakatalog.brreg.no';
 // env.ORGANIZATION_API = 'https://organization-catalogue.ut1.fellesdatakatalog.brreg.no';
+// env.CONCEPT_API = 'https://www.it1.fellesdatakatalog.brreg.no';
 
 const config = {
   auth: {
@@ -27,6 +28,10 @@ const config = {
   },
   organizationApi: {
     host: env.ORGANIZATION_API || ''
+  },
+
+  conceptApi: {
+    host: env.CONCEPT_API || 'https://fellesdatakatalog.brreg.no'
   }
 };
 
