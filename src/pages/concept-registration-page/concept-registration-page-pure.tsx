@@ -28,7 +28,13 @@ export const ConceptRegistrationPagePure: React.FC<Props> = ({ concept }) => {
         <h1 className="pb-5">
           {getTranslateText(get(stateConcept, ['anbefaltTerm', 'navn'])) || localization.registerNewConcept}
         </h1>
-        <FormConcept concept={concept} dispatch={dispatch} lastPatchedValues={get(stateConcept, 'lastPatchedValues')} />
+        {stateConcept && (
+          <FormConcept
+            concept={stateConcept}
+            dispatch={dispatch}
+            lastPatchedValues={get(stateConcept, 'lastPatchedValues')}
+          />
+        )}
       </div>
     </div>
   );

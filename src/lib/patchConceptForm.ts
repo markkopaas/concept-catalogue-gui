@@ -8,7 +8,7 @@ import {
 } from '../app/reducers/stateReducer';
 
 export const patchConceptFromForm = (values, { concept, dispatch, lastPatchedValues = {} }): void => {
-  const diff = compare(lastPatchedValues, values);
+  const diff = compare(concept, { ...concept, ...values });
   const conceptId = _.get(concept, 'id');
   dispatch(conceptPatchIsSavingAction(conceptId));
   patchConcept(conceptId, diff)

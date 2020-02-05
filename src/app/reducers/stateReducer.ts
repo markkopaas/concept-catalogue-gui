@@ -61,6 +61,7 @@ export const stateReducer = (state, action: Action): object => {
         ...state,
         [conceptId]: {
           ..._.get(state, [conceptId]),
+          ...concept,
           isSaving: false,
           status,
           justPublishedOrUnPublished,
